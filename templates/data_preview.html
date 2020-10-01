@@ -1,0 +1,104 @@
+{% extends 'base.html' %} 
+{% block content %}
+
+{% if values %}
+
+<form method="post" action="/results/" id="analyse_form" class="text-center container w-75 position-relative">
+  <div class="d-none" id="patience" style="background-color: rgba(255, 255, 255, 0.8 ); z-index: 100;" >
+    <img src="../static/gears.gif" alt="gears" class="mt-5" style="height: 3rem; width: 5rem;" />
+    <p class="w-75 ml-auto mr-auto mt-2" style="color: grey; font-weight: 700;" id="patience">Analysis may take some time depending on size of data. You will be redirected to results page once the data is finished analysing.</p>
+  </div>
+    {% csrf_token %}
+    <label for="first_row_headings" class="mb-3">
+      First
+      {% if orientation == "columns" %}
+      row
+      {% else %}
+      column
+      {% endif %}
+      headings?
+    </label>
+    <input type="checkbox" name="first_row_headings" id="first_row_headings">
+    <input type="hidden" value="{{orientation}}" name="orientation">
+    <input type="hidden" value="{{file_location}}" name="file_location">
+    <input type="hidden" value="{{file_url}}" name="file_url">
+    <div class="row justify-content-center mb-2">
+
+      {% if orientation == "columns" %}
+      <span>Select the column containing the ABNs:</span>
+      {% else %}
+      <span>Select the row containing the ABNs:</span>
+      {% endif %}
+      
+    </div>
+    <div class="row mb-3 container tableContainer">
+    <table class="ml-auto mr-auto">
+      <tbody>
+        <tr>
+          {% if excel_letters_column %}
+          {% for letter in excel_letters_column %}
+          <td class="excel_letter_heading">
+            {% if letter %}
+            <input type="radio" name="abn_index" id="{{letter}}" value="{{forloop.counter0}}" required='required'/>
+            {% endif %}
+            <label class="letterAxis" for="{{letter}}">{{letter}}</label>
+          </td>
+          {% endfor %} {% endif %} {% if excel_letters_row %}
+          {% for letter in excel_letters_row %}
+          <td class="excel_letter_heading">{{letter}}</td>
+          {% endfor %} {% endif %}
+        </tr>
+        {% for value in values %}
+        <tr>
+          {% if excel_letters_row %}
+          <td class="excel_number_heading">
+            <input
+              type="radio"
+              name="abn_index"
+              id="{{forloop.counter}}"
+              value="{{forloop.counter}}"
+              required="required"
+            /><label class="numberAxis" for="{{forloop.counter}}">{{ forloop.counter }}</label>
+          </td>
+          {% else %}
+          <td class="excel_number_heading">{{ forloop.counter }}</td>
+          {% endif %} {% for i in value %}
+          <td>{{i}}</td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+    <div class="row justify-content-end">
+      <input type="submit" value="Analyse" class="btn btn-secondary col-2" id="submit" style="cursor: not-allowed;" disabled  />
+    </div>
+  </form>
+
+  {% else %}
+  <div class="container text-center">
+    <p>It appears the dataset you uploaded is empty. <a href="/">Upload another file?</a></p>
+  </div>
+  {% endif %}
+  <script>
+    // Disable submit button until a radio input is selected
+    let radiosInput = document.getElementsByName("abn_index");
+    let buttonState = document.getElementById("submit");
+    for (let i = 0; i < radiosInput.length; i++ ) {
+      radiosInput[i].addEventListener("change", function() {
+        buttonState.removeAttribute("disabled");
+        buttonState.removeAttribute("style");
+    });
+    }
+
+    // Change submit button value from 'Analyse' to 'Analysing...' when submit is clicked
+    let patienceMessage = document.getElementById("patience")
+    buttonState.onclick = function() {
+      if (!buttonState.hasAttribute("disabled")) {
+        buttonState.setAttribute("value", "Analysing...");
+        patienceMessage.setAttribute("class", "w-100 h-100 position-absolute text-center");
+
+      }
+    }
+  </script>
+  {% endblock %}

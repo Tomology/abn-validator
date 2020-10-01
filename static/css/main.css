@@ -1,0 +1,46 @@
+.tableContainer {
+  max-height: 60vh;
+  overflow: auto;
+}
+table {
+  border-collapse: collapse;
+  overflow: hidden;
+  max-width: 75vw;
+}
+td {
+  border: 1px solid #d6d6d6;
+  padding: 5px;
+}
+.excel_letter_heading,
+.excel_number_heading {
+  background-color: #d6d6d6;
+  border: 1px solid black;
+  text-align: center;
+}
+.excel_letter_heading:hover,
+.excel_number_heading:hover {
+  cursor: pointer;
+}
+.numberAxis {
+  display: block;
+}
+.letterAxis {
+  display: block;
+}
+.info_text {
+  font-size: 15px;
+}
+input[type="file"] {
+  display: none;
+}
+svg {
+  width: 20px;
+  margin-bottom: 3px;
+  margin-right: 2px;
+}
+select {
+  padding: 1px 2px;
+}
+label {
+  margin-bottom: 0 !important;
+}
