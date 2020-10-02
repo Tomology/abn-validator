@@ -1,7 +1,9 @@
 asgiref==3.2.10
 certifi==2020.6.20
 chardet==3.0.4
+dj-database-url==0.5.0
 Django==3.1.1
+django-heroku==0.3.1
 et-xmlfile==1.0.1
 gunicorn==20.0.4
 idna==2.10
@@ -9,10 +11,12 @@ jdcal==1.4.1
 numpy==1.19.1
 openpyxl==3.0.5
 pandas==1.1.1
+psycopg2==2.8.6
 python-dateutil==2.8.1
 pytz==2020.1
 requests==2.24.0
 six==1.15.0
 sqlparse==0.3.1
 urllib3==1.25.10
+whitenoise==5.2.0
 xlrd==1.2.0
