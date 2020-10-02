@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = '3)#ew7p9#t%nt81buki=gsig&8fysv18g7p!1#&s$6pda+*rw*'
 SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 
 ALLOWED_HOSTS = [
     'abnvalidator.herokuapp.com',

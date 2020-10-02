@@ -1,9 +1,10 @@
-import os
 import pandas as pd
 import re
 import requests
 import json
 from string import ascii_uppercase
+
+from .GUID import GUID
 
 
 alphabet = ascii_uppercase
@@ -41,8 +42,6 @@ def excel_style_letters(length):
 
 
 #   CHECKS IF ABN FORMAT IS VALID AND MAKES REQUEST TO ABR WEB SERVICES FOR ENTITY / BUSINESS NAME
-GUID = os.environ.get('GUID')
-
 
 def abn_validator(file_location, first_row_headings, orientation, abn_index):
 
