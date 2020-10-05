@@ -56,7 +56,12 @@ In _settings.py_ set the _DEBUG_ value to _True_ or _False_.</br></br>
 **6. Register for GUID**</br></br>
 To be able to make calls to the ABR API you will need to register for a GUID. You can register for a GUID on the [ABR Website](https://abr.business.gov.au/Tools/WebServices).</br></br>
 **7. Setup GUID**</br></br>
-In the _utils.py_ file assign your GUID to the _guid_ variable.</br></br>
+In the _utils.py_ file assign your GUID to the _guid_ variable.
+
+```
+guid = "your-guid-goes-here"
+```
+
 **8. Apply Migrations**</br></br>
 Make sure you are located in the directory containing _manage.py_, then apply migrations:
 

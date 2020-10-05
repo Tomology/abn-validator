@@ -40,7 +40,7 @@ def excel_style_letters(length):
 
 #   CHECKS IF ABN FORMAT IS VALID AND MAKES REQUEST TO ABR WEB SERVICES FOR ENTITY / BUSINESS NAME
 
-guid = "99b768e7-0dd4-44da-a2e2-4305162240a5"
+guid = "your-guid-goes-here"
 
 
 def abn_validator(file_location, first_row_headings, orientation, abn_index):
