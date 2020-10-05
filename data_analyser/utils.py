@@ -4,9 +4,6 @@ import requests
 import json
 from string import ascii_uppercase
 
-from .GUID import GUID
-
-
 alphabet = ascii_uppercase
 
 #   PROVIDES LIST OF LETTERS TO BE USED AS COLUMN HEADINGS FOR SPREADSHEET PREVIEW
@@ -42,6 +39,9 @@ def excel_style_letters(length):
 
 
 #   CHECKS IF ABN FORMAT IS VALID AND MAKES REQUEST TO ABR WEB SERVICES FOR ENTITY / BUSINESS NAME
+
+guid = "99b768e7-0dd4-44da-a2e2-4305162240a5"
+
 
 def abn_validator(file_location, first_row_headings, orientation, abn_index):
 
@@ -117,7 +117,7 @@ def abn_validator(file_location, first_row_headings, orientation, abn_index):
             results_list.append('Valid')
             ABR = "https://abr.business.gov.au/json/"
             abr_call = "{ABR}AbnDetails.aspx?abn={ABN}&callback=callback&guid={GUID}".format(
-                ABR=ABR, ABN=converted_abn, GUID=GUID)
+                ABR=ABR, ABN=converted_abn, GUID=guid)
             abr_call_error = False
             if not abr_call_error:
                 try:
